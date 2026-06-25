@@ -2,14 +2,20 @@ import { useState } from "react";
 import bookingsData from "./data/bookings.json";
 import BookingList from "./components/BookingList";
 import FilterBar from "./components/FilterBar";
+import BookingForm from "./components/BookingForm";
 
 function App() {
+  const [bookings, setBookings] = useState(bookingsData);
   const [filter, setFilter] = useState("all");
+
+  const addBooking = (newBooking) => {
+    setBookings([...bookings, newBooking]);
+  };
 
   const filteredBookings =
     filter === "all"
-      ? bookingsData
-      : bookingsData.filter(
+      ? bookings
+      : bookings.filter(
           (booking) => booking.status === filter
         );
 
@@ -23,6 +29,8 @@ function App() {
       />
 
       <BookingList bookings={filteredBookings} />
+
+      <BookingForm addBooking={addBooking} />
     </div>
   );
 }
