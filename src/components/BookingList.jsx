@@ -6,7 +6,7 @@ function BookingList({ bookings }) {
   }
 
   return (
-    <div>
+    <div className="booking-grid">
       {bookings.map((booking) => (
         <BookingCard
           key={booking.id}

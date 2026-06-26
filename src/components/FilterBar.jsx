@@ -1,13 +1,11 @@
 function FilterBar({ filter, setFilter }) {
   return (
-    <div>
-      <label>Status Filter: </label>
-
+    <div className="filter">
       <select
         value={filter}
         onChange={(e) => setFilter(e.target.value)}
       >
-        <option value="all">All</option>
+        <option value="all">All Status</option>
         <option value="confirmed">Confirmed</option>
         <option value="pending">Pending</option>
         <option value="cancelled">Cancelled</option>
@@ -16,3 +14,6 @@ function FilterBar({ filter, setFilter }) {
   );
 }
 export default FilterBar;
+
+
+

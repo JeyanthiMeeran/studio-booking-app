@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function BookingForm({ addBooking }) {
+function BookingForm({ addBooking, onClose }) {
   const [clientName, setClientName] = useState("");
   const [sessionType, setSessionType] = useState("");
   const [date, setDate] = useState("");
@@ -37,34 +37,40 @@ function BookingForm({ addBooking }) {
     setDate("");
     setStatus("confirmed");
     setError("");
+
+    onClose();
   };
 
   return (
     <form onSubmit={handleSubmit}>
-      <h2>Add Booking</h2>
+      <h2>Add Event</h2>
 
-      {error && <p>{error}</p>}
+      {error && <p className="error">{error}</p>}
 
+      <label>Event Name</label>
       <input
         type="text"
-        placeholder="Client Name"
-        value={clientName}
-        onChange={(e) => setClientName(e.target.value)}
-      />
-
-      <input
-        type="text"
-        placeholder="Session Type"
+        placeholder="Enter event name"
         value={sessionType}
         onChange={(e) => setSessionType(e.target.value)}
       />
 
+      <label>Client Name</label>
+      <input
+        type="text"
+        placeholder="Enter client name"
+        value={clientName}
+        onChange={(e) => setClientName(e.target.value)}
+      />
+
+      <label>Date</label>
       <input
         type="date"
         value={date}
         onChange={(e) => setDate(e.target.value)}
       />
 
+      <label>Status</label>
       <select
         value={status}
         onChange={(e) => setStatus(e.target.value)}
@@ -74,9 +80,11 @@ function BookingForm({ addBooking }) {
         <option value="cancelled">Cancelled</option>
       </select>
 
-      <button type="submit">
-        Add Booking
-      </button>
+      <div className="form-buttons">
+        <button type="submit" className="submit-btn">
+          Add Event
+        </button>
+      </div>
     </form>
   );
 }

@@ -1,20 +1,24 @@
 function BookingCard({ booking }) {
   return (
-    <div className="booking-card">
-      <h3>{booking.clientName}</h3>
+   <div className="booking-card">
+      <h3>{booking.sessionType}</h3>
+
+      <p><strong>Client:</strong> {booking.clientName}</p>
 
       <p>
-        <strong>Session:</strong> {booking.sessionType}
+        <strong>Date:</strong>{" "}
+        {new Date(booking.date).toLocaleDateString("en-GB", {
+          day: "2-digit",
+          month: "short",
+          year: "numeric",
+        })}
       </p>
 
-      <p>
-        <strong>Date:</strong> {booking.date}
-      </p>
-
-      <p>
-        <strong>Status:</strong> {booking.status}
+      <p className={booking.status}>
+        {booking.status.toUpperCase()}
       </p>
     </div>
+
   );
 }
 
